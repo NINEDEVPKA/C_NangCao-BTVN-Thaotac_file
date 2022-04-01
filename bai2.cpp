@@ -2,26 +2,26 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <math.h>
 
 using namespace std;
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
     string path = argv[1];
-    int id = argc;
+    int id = stoi(argv[2]);
+    double w = stod(argv[3]);
 
-    double w,trongso;
+    double trongso;
     int diemi, diemj;
 
     ifstream myFile(path);
-    if(! myFile){
+    if (!myFile) {
         cout << "File Error!";
         exit(0);
     }
 
     string line;
     getline(myFile, line);
-    while (getline(myFile,line)) {
+    while (getline(myFile, line)) {
         stringstream ss(line);
         string token;
         getline(ss, token, ',');
@@ -32,12 +32,18 @@ int main(int argc, char *argv[]){
 
         getline(ss, token, ',');
         trongso = stod(token);
-    }
-    if (trongso > w && diemi == id){
-        cout << diemi << "->" << diemj << endl;
-    }else{
-        cout << "k co diem thoa man!" << endl;
+
+        if ((id == diemi) && (trongso > w)) {
+            ofstream ofs("./output2.txt");
+
+            ofs << "Cac diem thoa man voi id = " << id << " va co trong so lon hon " << w << " gom cac diem: " << endl;
+            ofs << diemi << "->" << diemj << endl;
+
+            //myFile.close();
+            ofs.close();
+        }
     }
 
     return 0;
+
 }

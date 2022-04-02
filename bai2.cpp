@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
         string token;
         getline(ss, token, ',');
         diemi = stoi(token);
+        if (diemi != id) continue;
 
         getline(ss, token, ',');
         diemj = stoi(token);
@@ -37,8 +38,8 @@ int main(int argc, char *argv[]) {
         getline(ss, token, ',');
         trongso = stod(token);
 
-        if ((id == diemi) && (trongso > w)) {
-            ofs << diemi << "->" << diemj << endl;
+        if ((trongso > w)) {
+            ofs << line << endl;
         }
     }
     myFile.close();

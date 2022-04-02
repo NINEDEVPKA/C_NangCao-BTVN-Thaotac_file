@@ -13,11 +13,15 @@ int main(int argc, char *argv[]) {
     double trongso;
     int diemi, diemj;
 
+
     ifstream myFile(path);
     if (!myFile) {
         cout << "File Error!";
         exit(0);
     }
+
+    ofstream ofs("./output2.txt");
+    ofs << "Cac diem thoa man voi id = " << id << " va co trong so lon hon " << w << " gom cac diem: " << endl;
 
     string line;
     getline(myFile, line);
@@ -34,15 +38,11 @@ int main(int argc, char *argv[]) {
         trongso = stod(token);
 
         if ((id == diemi) && (trongso > w)) {
-            ofstream ofs("./output2.txt");
-
-            ofs << "Cac diem thoa man voi id = " << id << " va co trong so lon hon " << w << " gom cac diem: " << endl;
             ofs << diemi << "->" << diemj << endl;
-
-            //myFile.close();
-            ofs.close();
         }
     }
+    myFile.close();
+    ofs.close();
 
     return 0;
 
